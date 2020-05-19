@@ -1,0 +1,119 @@
+@import "_variables";
+@font-face {
+  font-family: 'montserrat', 'arial', sans-serif;
+  src: url("../fonts/montserrat/montserrat-light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'montserrat', 'arial', sans-serif;
+  src: url("../fonts/montserrat/montserrat-regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'montserrat', 'arial', sans-serif;
+  src: url("../fonts/montserrat/montserrat-semibold.ttf");
+  font-weight: 600;
+}
+
+body {
+  width: 100%;
+  font-family: 'montserrat', sans-serif;
+  font-weight: 400;
+}
+
+header {
+  height: 100px;
+  box-shadow: -1px 7px 14px -5px rgba(0, 0, 0, 0.30);
+  display: flex;
+  justify-content: flex-end;
+}
+
+main {
+  width: 1400px;
+  margin: 0 auto;
+}
+
+.products {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.product-item {
+  width: 300px;
+  max-height: 510px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  -webkit-box-shadow: -1px 3px 30px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: -1px 3px 30px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: -1px 3px 30px 0px rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+  margin-right: 30px;
+  padding: 20px;
+
+  &:hover {
+    -webkit-box-shadow: -1px 3px 30px 0px rgba(0, 0, 0, 0.36);
+    -moz-box-shadow: -1px 3px 30px 0px rgba(0, 0, 0, 0.36);
+    box-shadow: -1px 3px 30px 0px rgba(0, 0, 0, 0.36);
+  }
+}
+
+.product-img {
+  background-color: lightgray;
+  border-radius: 10px;
+}
+
+h3,
+.price {
+  text-align: center;
+}
+
+h3 {
+  font-size: 26px;
+}
+
+.price {
+  font-size: 22px;
+}
+
+.btn {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 10px;
+  color: #FFFFFF;
+  padding: 20px;
+  background-color: #52a941;
+  box-shadow: 4px 1px 20px 0px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 4px 1px 20px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 4px 1px 20px 0px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+
+  &:hover {
+    background: #53b642;
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    outline: none;
+  }
+}
+
+.btn-cart {
+
+}
+
+.btn-cart-svg {
+  fill: white;
+}
+
+@import "media";
