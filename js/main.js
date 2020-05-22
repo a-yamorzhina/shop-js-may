@@ -53,22 +53,6 @@ class ProductsList {
         }
     }
 
-    //метод, считающий сумму всех товаров
-
-    calcTotal () {
-        // console.log(this.goods);
-        let sum = 0;
-
-        for (let product of this.goods) {
-            sum = sum + product.price;
-        }
-        console.log(sum);
-        return sum;
-    }
-
-
-
-}
 
 
 
@@ -91,26 +75,6 @@ class ProductItem {
 }
 
 let list = new ProductsList();
-list.calcTotal();
-
-class ProductCart {
-    constructor(cart = []) {
-        this.cart = cart;
-    }
-
-    addToCart(product) {
-        //добавить в корзину
-
-    }
-
-    sum() {
-        //сумма заказа
-    }
-
-    checkout() {
-        //оформить заказ
-    }
-}
 
 
 
