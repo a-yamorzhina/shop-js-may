@@ -11,9 +11,11 @@
 </head>
 <body>
 <header>
-    <button class="btn btn-cart" type="button">
-        <svg class="btn-cart-svg" height="20px" viewBox="-3 0 512 512" width="20px" xmlns="http://www.w3.org/2000/svg">
-            <path d="m494.929688 97.148438c-9.492188-10.84375-23.023438-16.816407-38.097657-16.816407h-364.429687l-3.667969-27.5c-3.953125-29.625-24.578125-52.832031-46.957031-52.832031h-26.777344c-8.285156
+        <span onclick="showModal()">
+            <button class="btn btn-cart" type="button">
+                <svg class="btn-cart-svg" height="20px" viewBox="-3 0 512 512" width="20px"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="m494.929688 97.148438c-9.492188-10.84375-23.023438-16.816407-38.097657-16.816407h-364.429687l-3.667969-27.5c-3.953125-29.625-24.578125-52.832031-46.957031-52.832031h-26.777344c-8.285156
             0-15 6.714844-15 15s6.714844 15 15 15h26.777344c4.8125 0 15.003906 10.175781 17.21875 26.796875l42.9375
             322.039063c1.890625 14.195312 9.183594 27.484374 20.535156 37.421874 8.417969 7.371094 18.367188 12.273438
             28.789062 14.324219-4.246093 7.808594-6.660156 16.753907-6.660156 26.25 0 30.421875 24.75 55.167969
@@ -32,19 +34,58 @@
               11.8125 2.335938 15.523438 6.578125zm-213.019531 204.421875-6.035157-90.5h80.371094l-6.035156 90.5zm-8.035157-120.5-6.03125-90.5h96.433594l-6.03125
               90.5zm-36.097656-90.5 6.03125 90.5h-112.769531l-12.066406-90.5zm-102.738281 120.5h110.769531l6.035156
               90.5h-104.738281zm312.234375 90.5h-66.996094l6.035156-90.5h100.0625l-8.492187 63.703125c-1.9375
-              14.527344-15.957032 26.796875-30.609375 26.796875zm0 0"/></svg>
-        Корзина</button>
+              14.527344-15.957032 26.796875-30.609375 26.796875zm0 0"/>
+                </svg>
+                Корзина
+            </button>
+        </span>
+
 </header>
 <main>
     <div class="products"></div>
 </main>
-<!--beforestart-->
-<p>
-    <!--afterstart-->
-    <span></span>
-    <!--beforeend-->
-</p>
-<!--afterend-->
-<script src="js/main.js"></script>
+<!--START MODAL-->
+<div id="myModal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Корзина</h3>
+                <a onclick="closeModal()" title="Close" class="close">×</a>
+            </div>
+            <div class="modal-body">
+
+                    <div class="shopping-cart">
+
+                        <div class="cart-titles">
+                            <p class="cart-id_product cart-title bold">ID</p>
+                            <p class="cart-product_name cart-title bold">Название</p>
+                            <p class="cart-price cart-title bold">Цена</p>
+                            <p class="cart-quantity bold">Количество</p>
+                        </div>
+
+                        <div id="cart-product">
+
+                        </div>
+                        <div id="total">
+
+                        </div>
+
+
+                    </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <!--END MODAL-->
+    <!--beforestart-->
+    <p>
+        <!--afterstart-->
+        <span></span>
+        <!--beforeend-->
+    </p>
+    <!--afterend-->
+    <script src="js/main.js"></script>
 </body>
 </html>

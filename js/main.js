@@ -1,46 +1,34 @@
-/*const products = [
-    {id: 1, title: 'Laptop', price: 2000, img: 'img/laptop.png'},
-    {id: 2, title: 'Mouse', price: 20, img: 'img/mouse.png'},
-    {id: 3, title: 'Keyboard', price: 200, img: 'img/keyboard.png'},
-    {id: 4, title: 'Gamepad', price: 50, img: 'img/gamepad.png'},
-];
+const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
 
-const renderProduct = (title = 'заголовок', price = 'цена', img = 'адрес') => { // 2 - значения по умолчанию
-    return `<div class="product-item">
-                <h3>${title}</h3>
-                 <img class="product-img" src="${img}" alt="img" width="300">
-                <p class="price">${price} &#8381 </p>
-                <button class="btn buy-btn">Купить</button>
-            </div>`
-};
-const renderPage = list => { //используя стрелочные функции, мы сокращаем код
-    console.log(list);
-    const productsList = list.map(item => renderProduct(item.title, item.price, item.img));
-
-    let uniteProducts = productsList.join(' ');
-
-    document.querySelector('.products').innerHTML = uniteProducts; // 3 - когда innerHTML принимает массив, он вставляет
-    //запятые. Поэтому, мы заранее с помощью метода join объединяем массив в строку
-};
-
-renderPage(products);*/
-
+//оптимизировать код ниже
 class ProductsList {
     constructor(container = '.products') {
         this.container = container;
         this.goods = [];
         this.allProducts = [];
-        this._fetchProduct();
-        this.render();
+        this._getProducts() //вот здесь промис - его оптимизировать
+            .then(data => {
+                this.goods = [...data];
+                this.render()
+            });
     }
 
-    _fetchProduct() {
-        this.goods = [
-            {id: 1, title: 'Laptop', price: 2000, img: 'img/laptop.png'},
-            {id: 2, title: 'Mouse', price: 20, img: 'img/mouse.png'},
-            {id: 3, title: 'Keyboard', price: 200, img: 'img/keyboard.png'},
-            {id: 4, title: 'Gamepad', price: 50, img: 'img/gamepad.png'},
-        ]
+    /*    _fetchProduct() {
+            this.goods = [
+                {id: 1, title: 'Laptop', price: 2000, img: 'img/laptop.png'},
+                {id: 2, title: 'Mouse', price: 20, img: 'img/mouse.png'},
+                {id: 3, title: 'Keyboard', price: 200, img: 'img/keyboard.png'},
+                {id: 4, title: 'Gamepad', price: 50, img: 'img/gamepad.png'},
+            ]
+        }*/
+
+
+    _getProducts() {
+        return fetch(`${API}/catalogData.json`)
+            .then(result => result.json())
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     render() {
@@ -49,7 +37,7 @@ class ProductsList {
             const productObj = new ProductItem(product);
             this.allProducts.push(productObj);
             block.insertAdjacentHTML('beforeend', productObj.render());
-            //block.innerHTML += productObj.render();
+
         }
 
     }
@@ -70,18 +58,18 @@ class ProductsList {
 
 class ProductItem {
     constructor(product, img = "https://placehold.it/200x150") {
-        this.title = product.title;
-        this.id = product.id;
-        this.img = product.img;
+        this.product_name = product.product_name;
+        this.id_product = product.id_product;
+        this.img = img;
         this.price = product.price;
     }
 
     render() {
         return `<div class="product-item">
                 <img class="product-img" alt="img" src="${this.img}" width="300">
-                <h3>${this.title}</h3>
+                <h3>${this.product_name}</h3>
                 <p class="price">${this.price}</p>
-                <button class="btn buy-btn">Купить</button>
+                <button class="buy-btn btn">Купить</button>
             </div>`
     }
 }
@@ -89,25 +77,70 @@ class ProductItem {
 let list = new ProductsList();
 list.calcTotal();
 
-class ProductCart {
-    constructor(cart = []) {
-        this.cart = cart;
+
+//вывести по клику на корзину данные json getBasket
+class Basket {
+
+    get() {
+        return fetch(`${API}/getBasket.json`)
+            .then((response) => response.json())
+            .catch(error => {
+                console.log(error);
+            })
     }
 
-    addToCart(product) {
-        //добавить в корзину
+    addGoods() {
 
     }
 
-    sum() {
-        //сумма заказа
+    removeGoods() {
+
     }
 
-    checkout() {
-        //оформить заказ
+    changeGoods() {
+
     }
 }
 
+class elemBasket {
+
+}
 
 
+function showModal() {
+
+    let basket = new Basket();
+    basket.get().then(data => {
+        let basketElements = data;
+
+        // console.log(basketElements.amount);
+        // document.getElementById('amount').innerText = (`${basketElements.amount}`);
+
+        basketElements.contents.forEach(function (item) {
+            let cart = document.getElementById('cart-product');
+            let html = '<div class="cart-products"><p class="cart-id_product">' + item.id_product + '</p>\n' +
+                '<p class="cart-product_name">' + item.product_name + '</p>\n' +
+                '<p class="cart-price">' + item.price + '</p>\n' +
+                '<p class="cart-quantity">' + item.quantity + '</p></div>';
+
+            cart.insertAdjacentHTML('beforeend', html);
+        });
+
+        let total = document.getElementById('total');
+        let totalHtml = '<span class="count bold">Количество товаров: '+basketElements.countGoods+'</span>\n' +
+            '<p class="final bold">Стоимость товаров: '+basketElements.amount+'</p>';
+        total.innerHTML = totalHtml;
+
+        let myModal = document.getElementById('myModal');
+        myModal.classList.add('show');
+    });
+
+
+}
+
+function closeModal() {
+    let closeModal = document.getElementById('myModal');
+    closeModal.classList.remove('show');
+
+}
 
