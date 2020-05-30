@@ -161,8 +161,8 @@ h3 {
 /* ширина модального окна и его отступы от экрана */
 .modal-dialog {
   position: relative;
-  width: auto;
-  margin: 10px;
+  margin: 1.75rem auto;
+  width: 700px;
 }
 
 /* свойства для блока, содержащего контент модального окна */
@@ -246,7 +246,7 @@ h3 {
   -webkit-flex: 1 1 auto;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  padding: 15px;
+  padding: 30px;
   overflow: auto;
 }
 
@@ -269,21 +269,21 @@ h3 {
 
 .cart-id_product,
 .cart-product_name,
-.cart-price {
+.cart-price,
+.cart-quantity {
   min-width: 150px;
   min-height: 50px;
   margin: 0 auto;
   display: flex;
-  /* justify-content: end; */
   align-items: center;
+  justify-content: center;
 }
 
-.cart-quantity {
-  min-width: 150px;
-  display: flex;
-  /* justify-content: end; */
-  align-items: center;
-}
+//.cart-quantity {
+//  min-width: 150px;
+//  display: flex;
+//  align-items: center;
+//}
 
 #total {
   display: flex;
@@ -294,9 +294,64 @@ h3 {
   /* justify-content: flex-end; */
   align-items: flex-end;
   margin-right: 30px;
+  margin-top: 30px;
 }
 
 .bold {
   font-weight: 600;
 }
+
+
+.minus {
+  fill: crimson;
+  cursor: pointer;
+  margin-right: 10px;
+
+  &:hover {
+    fill: #a9122c;
+  }
+}
+
+.plus {
+  fill: #52a941;
+  cursor: pointer;
+  margin-left: 10px;
+
+  &:hover {
+    fill: #44883b;
+  }
+}
+
+hr {
+  width: 100%;
+  color: #c7c2cc;
+  opacity: .2;
+  margin-bottom: 30px;
+}
+
+.cart-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 30px;
+}
+
+.modal-btn {
+  width: 210px;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px;
+}
+
+.clean {
+  background-color: cornflowerblue;
+  &:hover {
+    background-color: #66a4fe;
+  }
+  &:disabled {
+    background-color: #c7c2cc;
+    cursor: auto;
+  }
+}
+
+
 @import "media";
