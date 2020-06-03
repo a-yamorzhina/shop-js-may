@@ -182,7 +182,9 @@ class Basket {
 
                     if(basket.length < 1) {
                         let disabled = document.querySelector('.clean');
+                        let checkout = document.querySelector('.checkout');
                         disabled.disabled = true;
+                        checkout.disabled = true;
                     }
 
                     this.recall();
@@ -219,7 +221,7 @@ class Basket {
 }
 
 function clickBasket(id) {
-
+    notificate();
     let basket = new Basket();
     basket.addToBasket(id);
 
@@ -232,10 +234,10 @@ function showModal() {
     cart.innerHTML = null;
 
     basket.forEach(function (item) {
-        let html = '<div class="cart-products" data-id=' + item.id_product +'><p class="cart-id_product">' + item.id_product + '</p>\n' +
-            '<p class="cart-product_name">' + item.product_name + '</p>\n' +
-            '<p class=cart-price">' + item.price + '</p>\n' +
-            '<p class="cart-quantity"> <svg onclick="minusEl(' + item.id_product + ')" class="minus" xmlns="http://www.w3.org/2000/svg" height="14px"\n' +
+        let html = '<div class="cart-products" data-id=' + item.id_product +'><p class="cart-id_product s">' + item.id_product + '</p>\n' +
+            '<p class="cart-product_name s">' + item.product_name + '</p>\n' +
+            '<p class="cart-price s">' + item.price + '</p>\n' +
+            '<p class="cart-quantity s"> <svg onclick="minusEl(' + item.id_product + ')" class="minus" xmlns="http://www.w3.org/2000/svg" height="14px"\n' +
             '                                                               viewBox="0 -192 469.33333 469" width="14px">\n' +
             '                                <path d="m437.332031.167969h-405.332031c-17.664062 0-32 14.335937-32 32v21.332031c0\n' +
             '                                17.664062 14.335938 32 32 32h405.332031c17.664063 0 32-14.335938\n' +
@@ -258,10 +260,13 @@ function showModal() {
     myModal.classList.add('show');
 
     let disabled = document.querySelector('.clean');
+    let checkout = document.querySelector('.checkout');
     if(basket.length < 1) {
         disabled.disabled = true;
+        checkout.disabled = true;
     } else {
         disabled.disabled = false;
+        checkout.disabled = false;
     }
 }
 
@@ -287,7 +292,9 @@ function clearBasket() {
 
 
     let disabled = document.querySelector('.clean');
+    let checkout = document.querySelector('.checkout');
     disabled.disabled = true;
+    checkout.disabled = true;
 
     let block = document.querySelector(`.cart-products`);
         block.remove();
@@ -295,7 +302,40 @@ function clearBasket() {
 
 //оформление заказа
 function checkout() {
-    alert('clear');
+    location.href = 'checkout.html';
+}
+
+
+
+
+function notificationDelete() {
+
+
+    let notification = document.getElementsByClassName("notification");
+
+    if(notification.length > 0) {
+        notification[0].remove();
+    }
+
+}
+
+function notificate() {
+    let notification = document.querySelector('.notification-wrap');
+    // notification.style.display = 'block';
+
+    // let num = Math.floor(Math.random() * Math.floor(100)); проверка на корректность исчезновения блоков
+
+    let notificationContent =  '<div class="notification"> ' +
+        '<p class="added">Товар добавлен в корзину!</p> ' +
+        '<a onclick="closeNotification(this)" title="Close" class="close close-not">×</a>' +
+        '</div>';
+    notification.insertAdjacentHTML('beforeend', notificationContent);
+
+    setTimeout(() => notificationDelete(), 5000);
+}
+
+function closeNotification(event) {
+    event.parentElement.remove();
 }
 
 

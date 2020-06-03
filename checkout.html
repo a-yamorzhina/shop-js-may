@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Интернет-магазин</title>
+    <title>Оформление заказа</title>
 </head>
 <body>
 <header>
@@ -69,7 +69,7 @@
 			c4.167,4.165,10.919,4.165,15.086,0l15.081-15.082C513.04,489.627,513.04,482.873,508.874,478.708z M202.667,362.667
 			c-88.229,0-160-71.771-160-160s71.771-160,160-160s160,71.771,160,160S290.896,362.667,202.667,362.667z"/>
 </svg></button>
-<!--            TODO: функция search() в новом файле или как или что вообще-->
+            <!--            TODO: функция search() в новом файле или как или что вообще-->
         </label>
     </div>
     <span onclick="showModal()">
@@ -100,63 +100,26 @@
                 Корзина
             </button>
         </span>
-
 </header>
 <main>
-    <div class="products"></div>
+    <h2 class="h2">Оформление заказа</h2>
+    <div class="checkout-form" name="form">
+        <label for="name">Ваше имя<input type="text" id="name" name="name" required></label>
+        <label for="phone">Ваш контактный номер телефона<input type="text" id="phone" name="phone" required></label>
+        <label for="email">Ваш электронный адрес<input type="text" id="email" name="email"></label>
+        <label for="description">Комментарии<textarea id="description" name="description"></textarea></label>
+        <button type="submit" class="btn check-btn" onclick="checkoutValid()"> Оформить звонок</button>
+    </div>
 
     <div class="notification-wrap">
 
 
     </div>
-
 </main>
-<!--START MODAL-->
-<div id="myModal" class="modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Корзина</h3>
-                <a onclick="closeModal()" title="Close" class="close">×</a>
-            </div>
-            <div class="modal-body">
-
-                <div class="shopping-cart">
-
-                    <div class="cart-titles">
-                        <p class="cart-id_product cart-title bold">ID</p>
-                        <p class="cart-product_name cart-title bold">Название</p>
-                        <p class="cart-price cart-title bold">Цена</p>
-                        <p class="cart-quantity bold">Количество</p>
-                    </div>
-
-                    <div id="cart-product">
-
-                    </div>
-                    <div id="total">
-
-                    </div>
-
-                    <div class="cart-buttons">
-                        <input class="btn modal-btn clean" type="button" value="Очистить корзину"
-                               onclick="clearBasket()">
-                        <input class="btn modal-btn checkout" type="button" value="Оформить заказ" onclick="checkout()">
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
-</div>
-    <!--END MODAL-->
-    <!--beforestart-->
-    <p>
-        <!--afterstart-->
-        <span></span>
-        <!--beforeend-->
-    </p>
-    <!--afterend-->
-    <script src="js/main.js"></script>
+<script src="js/checkout.js"></script>
 </body>
 </html>
+
+<style>
+
+</style>
